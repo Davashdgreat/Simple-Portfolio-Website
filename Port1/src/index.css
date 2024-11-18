@@ -6,3 +6,25 @@
     --radius: 0.5rem
   }
 }
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar{
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background: transparent;
+  background: #adadad !important;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: #d6d6d6 !important;
+}

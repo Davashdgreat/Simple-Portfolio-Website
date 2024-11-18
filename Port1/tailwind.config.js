@@ -9,6 +9,9 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		  backdropBlur: {
+			'custom': '4px',  // Add your desired blur value here (e.g., '5px', '10px', etc.)
+		  },
   		colors: {}
   	}
   },
