@@ -30,7 +30,7 @@ const About: React.FC = () => {
             <h3 className="text-2xl font-semibold text-gray-200">Skills</h3>
 
             {/* Frontend Accordion */}
-            <div className="space-y-2 animate-pulse">
+            <div className="space-y-2">
               <button
                 onClick={() => toggleAccordion('frontend')}
                 className="w-full text-left bg-gray-200 p-4 rounded-lg font-semibold text-gray-900 hover:bg-gray-300 flex justify-between items-center"
@@ -45,7 +45,7 @@ const About: React.FC = () => {
                 </span>
               </button>
               {activeAccordion === 'frontend' && (
-                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc">
+                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc animate-pulse">
                   <li>React & TypeScript</li>
                   <li>HTML, CSS, and Tailwind CSS</li>
                   <li>JavaScript (ES6+)</li>
@@ -56,7 +56,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Backend Accordion */}
-            <div className="space-y-2 animate-pulse">
+            <div className="space-y-2">
               <button
                 onClick={() => toggleAccordion('backend')}
                 className="w-full text-left bg-gray-200 p-4 rounded-lg font-semibold text-gray-900 hover:bg-gray-300 flex justify-between items-center"
@@ -71,7 +71,7 @@ const About: React.FC = () => {
                 </span>
               </button>
               {activeAccordion === 'backend' && (
-                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc">
+                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc animate-pulse">
                   <li>PHP</li>
                   <li>MySQL</li>     
                   <li>API Integration</li>             
@@ -81,7 +81,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Database Administration Accordion */}
-            <div className="space-y-2 animate-pulse">
+            <div className="space-y-2">
               <button
                 onClick={() => toggleAccordion('database')}
                 className="w-full text-left bg-gray-200 p-4 rounded-lg font-semibold text-gray-900 hover:bg-gray-300 flex justify-between items-center"
@@ -96,7 +96,7 @@ const About: React.FC = () => {
                 </span>
               </button>
               {activeAccordion === 'database' && (
-                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc">
+                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc animate-pulse">
                   <li>MySQL</li>
                   <li>XAMPP</li>
                   <li>Microsoft Office</li>
@@ -107,7 +107,7 @@ const About: React.FC = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-2xl font-semibold text-gray-900">Experience</h3>
+            <h3 className="text-2xl font-semibold text-gray-300">Experience</h3>
             <div className="space-y-4 text-left">
               <div className="border-l-4 border-blue-400 pl-4">
                 <h4 className="text-xl font-semibold text-gray-200">

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
         {/* Left Side - Branding */}
         <div className="mb-4 md:mb-0">
-          <p className="text-lg font-semibold">&copy; 2024 Davash</p>
+          <a href='#' className="text-lg font-semibold">&copy; 2024 Davash</a>
         </div>
 
         {/* Right Side - Social Media Links */}

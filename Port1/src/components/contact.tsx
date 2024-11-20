@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-200">
             Reach out to me on my socials
           </h2>
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-center space-x-6 animate-bounce">
             <a href="https://github.com/Davashdgreat" target="_blank" rel="noopener noreferrer">
               <FaGithub size={32} className="text-gray-200 hover:text-gray-400" />
             </a>

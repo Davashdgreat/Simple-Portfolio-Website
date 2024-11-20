@@ -5,7 +5,7 @@ import { HiArrowDownTray } from 'react-icons/hi2';
 const Intro: React.FC = () => {
     const [multxt] = useTypewriter({
         words: [' Ashaolu David 😊', ' a Frontend Developer', ' a Database Administrator'],
-        loop:true,
+        loop:5,
         typeSpeed: 100,
         deleteSpeed: 50
 
@@ -38,8 +38,8 @@ const Intro: React.FC = () => {
       </div>
 
       {/* Right Side - Profile Picture */}
-      <div className="flex-1 flex justify-center mt-10 md:mt-0 animate-bounce">
-        <img
+      <div className="flex-1 flex justify-center mt-10 md:mt-0 animate-fade-in-from-right duration-700 delay-500">
+        <img  
           src="/src/assets/images/ME.jpg"
           alt="Ashaolu David"
           className="w-68 h-68 md:w-80 md:h-80 object-cover shadow-lg"
