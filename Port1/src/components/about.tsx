@@ -56,12 +56,12 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="py-20 px-6 md:px-20 bg-none">
-      <div className="max-w-7xl mx-auto text-center">
+    <section id="about" className="py-20 px-6 md:px-20 bg-none dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto text-center ">
         {/* Animate the heading */}
         <motion.h2
           ref={ref}
-          className="text-3xl md:text-4xl font-bold text-gray-200 mb-6"
+          className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 "
           variants={containerVariants}
           initial="hidden"
           animate={controls}
@@ -73,7 +73,7 @@ const About: React.FC = () => {
           ))}
         </motion.h2>
 
-        <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-gray-800 mb-8 max-w-3xl mx-auto">
           I am a passionate developer with a focus on building dynamic and
           user-friendly web applications. I specialize in React, TypeScript, and
           creating clean, intuitive interfaces. I have worked on a variety of

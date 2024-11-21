@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 import { motion } from 'framer-motion'; // Import motion from framer-motion
+import ThemeToggle from './themetoggle';
 
 const Footer: React.FC = () => {
   return (
@@ -52,6 +53,9 @@ const Footer: React.FC = () => {
             <FaEnvelope size={24} className="hover:text-gray-400" />
           </motion.a>
         </div>
+
+        <ThemeToggle/>
+
       </div>
     </footer>
   );

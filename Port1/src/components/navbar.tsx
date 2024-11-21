@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-scroll'; // Import Link from react-scroll
+import ThemeToggle from './themetoggle';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-transparent backdrop-blur-custom text-white fixed w-full z-10 shadow-md">
+    <nav className="bg-transparent backdrop-blur-custom text-black fixed w-full z-10 shadow-md dark:text-gray-200">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <div className="text-2xl font-bold cursor-pointer">
@@ -52,9 +53,11 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
+        <ThemeToggle />
+
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden flex items-center text-white focus:outline-none"
+          className="md:hidden flex items-center text-black focus:outline-none dark:text-gray-200"
           onClick={() => setIsOpen(!isOpen)}
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

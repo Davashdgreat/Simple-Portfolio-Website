@@ -12,7 +12,10 @@ export default {
 		  backdropBlur: {
 			'custom': '4px',  // Add your desired blur value here (e.g., '5px', '10px', etc.)
 		  },
-  		colors: {}
+  		colors: {
+			darkBackground: '#1a1a1a',
+        	darkText: '#e0e0e0',
+		}
   	}
   },
   plugins: [require("tailwindcss-animate", "tailwindcss-motion")],

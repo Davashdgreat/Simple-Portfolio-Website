@@ -15,7 +15,7 @@ const Intro: React.FC = () => {
   return (
     <section 
       id="home"
-      className=" min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-10"
+      className=" min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-10 dark:bg-gray-900 text-black dark:text-white"
     >
       {/* Left Side - Brief Info */}
       <motion.div className="flex-1 text-left space-y-6 "
@@ -23,12 +23,12 @@ const Intro: React.FC = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 2, ease: 'easeOut' }}>
         
-        <h1 className="text md:text-4xl font-bold text-gray-200">
+        <h1 className="text md:text-4xl font-bold text-gray-800 dark:text-gray-200">
           I'm 
-          <span className="text-gray-200">{multxt}</span>
+          <span className="text-gray-800 dark:text-gray-200">{multxt}</span>
           <Cursor  cursorStyle='<'/>
         </h1>
-        <p className="text-lg md:text-xl text-gray-200 max-w-lg">
+        <p className="text-lg md:text-xl text-gray-800 max-w-lg dark:text-gray-200">
           I’m a passionate developer with experience in React, TypeScript, and
           building dynamic web applications. I love creating clean, user-friendly
           interfaces and bringing ideas to life through code.
@@ -36,7 +36,7 @@ const Intro: React.FC = () => {
         <a
           href="/assets/Resume.pdf"
           download
-          className="flex w-1/2 bg-gray-700 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gray-900 transition "
+          className="flex w-1/2 bg-gray-800 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gray-400 transition "
         >
           Click here to view my resume!<HiArrowDownTray className="h-5 w-5 ml-2" />
         </a>  
