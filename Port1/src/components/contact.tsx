@@ -1,10 +1,45 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const [inViewLeft, setInViewLeft] = useState(false);
+  const [inViewRight, setInViewRight] = useState(false);
   const [message, setMessage] = useState('');
+
+  // Intersection observer callback
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (entry.target === leftRef.current) {
+          setInViewLeft(true);
+        }
+        if (entry.target === rightRef.current) {
+          setInViewRight(true);
+        }
+      }
+    });
+  };
+
+  // Setup Intersection Observer on mount
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5, // 50% of the element should be in the viewport
+    });
+
+    if (leftRef.current) observer.observe(leftRef.current);
+    if (rightRef.current) observer.observe(rightRef.current);
+
+    // Cleanup observer on unmount
+    return () => {
+      if (leftRef.current) observer.unobserve(leftRef.current);
+      if (rightRef.current) observer.unobserve(rightRef.current);
+    };
+  }, []);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,7 +70,13 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20 px-6 md:px-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Left Side - Socials */}
-        <div className="space-y-8 m-auto">
+        <motion.div
+          ref={leftRef}
+          className="space-y-8 m-auto"
+          initial={{ x: -200, opacity: 0 }}
+          animate={{ x: inViewLeft ? 0 : -200, opacity: inViewLeft ? 1 : 0 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        >
           <h2 className="text-3xl font-bold text-gray-200">
             Reach out to me on my socials
           </h2>
@@ -53,10 +94,16 @@ const Contact: React.FC = () => {
               <FaEnvelope size={32} className="text-gray-200 hover:text-gray-400" />
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Side - Contact Form */}
-        <div className="bg-white shadow-lg rounded-lg p-8">
+        <motion.div
+          ref={rightRef}
+          className="bg-white shadow-lg rounded-lg p-8"
+          initial={{ x: 200, opacity: 0 }}
+          animate={{ x: inViewRight ? 0 : 200, opacity: inViewRight ? 1 : 0 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        >
           <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contact Me</h3>
           <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
             <div>
@@ -105,7 +152,7 @@ const Contact: React.FC = () => {
               <p className="text-center text-green-600 mt-4">{message}</p>
             )}
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

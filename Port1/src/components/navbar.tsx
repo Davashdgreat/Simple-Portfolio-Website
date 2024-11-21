@@ -1,41 +1,55 @@
 import React, { useState } from 'react';
+import { Link } from 'react-scroll'; // Import Link from react-scroll
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Smooth scroll function
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 60,
-        behavior: 'smooth',
-      });
-    }
-  };
-
   return (
-    <nav className="bg-transparent backdrop-blur-custom  text-white fixed w-full z-10 shadow-md">
+    <nav className="bg-transparent backdrop-blur-custom text-white fixed w-full z-10 shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         {/* Logo */}
-        <div className="text-2xl font-bold cursor-pointer" onClick={() => scrollToSection('home')}>
-          Davash
+        <div className="text-2xl font-bold cursor-pointer">
+          <a href="#">Davash</a>
         </div>
 
         {/* Links for larger screens */}
         <div className="hidden md:flex space-x-8">
-          <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('about')}>
+          <Link
+            to="about" // Target section id
+            smooth={true} // Enable smooth scroll
+            offset={-60} // Adjust for fixed navbar height
+            duration={500} // Duration of the scroll animation (ms)
+            className="cursor-pointer hover:text-gray-300 font-bold"
+          >
             About
-          </span>
-          <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('projects')}>
+          </Link>
+          <Link
+            to="projects"
+            smooth={true}
+            offset={-60}
+            duration={500}
+            className="cursor-pointer hover:text-gray-300 font-bold"
+          >
             Projects
-          </span>
-          <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('skills')}>
+          </Link>
+          <Link
+            to="skills"
+            smooth={true}
+            offset={-60}
+            duration={500}
+            className="cursor-pointer hover:text-gray-300 font-bold"
+          >
             Skills
-          </span>
-          <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('contact')}>
+          </Link>
+          <Link
+            to="contact"
+            smooth={true}
+            offset={-60}
+            duration={500}
+            className="cursor-pointer hover:text-gray-300 font-bold"
+          >
             Contact
-          </span>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -55,27 +69,45 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-        <div
-            className="absolute top-16 right-0 bg-transparent backdrop-blur-2xl w-full md:hidden flex flex-col items-center space-y-4 py-4
-            opacity-0, translate-y-[-20px], transition-all duration-700 ease-in-out
-            opacity-100 translate-y-0"
-        >
-            <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('about')}>
-            About
-            </span>
-            <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('projects')}>
-            Projects
-            </span>
-            <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('skills')}>
-            Skills
-            </span>
-            <span className="cursor-pointer hover:text-gray-300 font-bold" onClick={() => scrollToSection('contact')}>
-            Contact
-            </span>
-        </div>
+          <div className="absolute top-16 right-0 bg-white text-gray-700 backdrop-blur-2xl w-full md:hidden flex flex-col items-center space-y-4 py-4">
+            <Link
+              to="about"
+              smooth={true}
+              offset={-60}
+              duration={500}
+              className="cursor-pointer hover:text-gray-300 font-bold"
+            >
+              About
+            </Link>
+            <Link
+              to="projects"
+              smooth={true}
+              offset={-60}
+              duration={500}
+              className="cursor-pointer hover:text-gray-300 font-bold"
+            >
+              Projects
+            </Link>
+            <Link
+              to="skills"
+              smooth={true}
+              offset={-60}
+              duration={500}
+              className="cursor-pointer hover:text-gray-300 font-bold"
+            >
+              Skills
+            </Link>
+            <Link
+              to="contact"
+              smooth={true}
+              offset={-60}
+              duration={500}
+              className="cursor-pointer hover:text-gray-300 font-bold"
+            >
+              Contact
+            </Link>
+          </div>
         )}
-
-
       </div>
     </nav>
   );

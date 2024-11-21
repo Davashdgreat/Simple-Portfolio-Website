@@ -1,26 +1,67 @@
+import { motion, useAnimation } from 'framer-motion';
 import React from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const Projects: React.FC = () => {
+
+   // Controls for Framer Motion animations
+   const controls = useAnimation();
+
+   // Observe when the heading enters the viewport
+   const [ref, inView] = useInView({
+     triggerOnce: true, // Trigger animation only once
+     threshold: 0.1, // Trigger when 10% of the heading is visible
+   });
+ 
+   // Start the animation when the heading is in view
+   React.useEffect(() => {
+     if (inView) {
+       controls.start('visible');
+     }
+   }, [controls, inView]);
+ 
+   // Define animation variants
+   const letterVariants = {
+     hidden: { opacity: 0, y: 20 },
+     visible: {
+       opacity: 1,
+       y: 0,
+       transition: {
+         type: 'spring',
+         damping: 10,
+         stiffness: 100,
+       },
+     },
+   };
+ 
+   const containerVariants = {
+     visible: {
+       transition: {
+         staggerChildren: 0.1, // Stagger each letter's animation
+       },
+     },
+   };
+
   const projects = [
     {
       title: 'Open School Field',
       description:
-        'A web app for renting school football fields, allowing users to book fields, agents to manage listings, and schools to offer rental spaces.',
-      techStack: 'React, TypeScript, Tailwind CSS, Node.js, MySQL',
+        'A web app for renting school football fields, allowing users to book fields, agents to manage listings, and schools to offer rental spaces, increasing the credibilty and accountability of primary and secondary institutions',
+      techStack: 'React, TypeScript, Tailwind CSS',
       link: 'https://github.com/Davashdgreat/schoolfieldrental-ui', // GitHub link (replace with a live link)
     },
     {
       title: 'Portfolio Website',
       description:
-        'A personal portfolio website showcasing my work, skills, and experience, built with React, TypeScript, and Tailwind CSS.',
+        'A personal portfolio website built with React, TypeScript, and Tailwind CSS, showcasing my projects, technical skills, and professional experience in an interactive and visually appealing design.',
       techStack: 'React, TypeScript, Tailwind CSS',
       link: 'https://github.com/Davashdgreat/portfolio', // GitHub link (replace with live link)
     },
     {
         title: 'Weather Forecast App',
         description:
-          'A Weather forecast app to help gain access to weather conditions and details all over the world, built with React and Openweather API.',
-        techStack: 'React, Firebase, Tailwind CSS, API Integration',
+          'A weather forecast app built with React and OpenWeather API, providing global weather conditions and detailed forecasts that can be shared via whatsapp in an intuitive interface.',
+        techStack: 'HTML, CSS, Javascript, React, Tailwind CSS, Openweather API Integration',
         link: 'https://weather-app-delta-seven-75.vercel.app/', // GitHub link (replace with live link)
       },
     {
@@ -50,34 +91,66 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20 px-6 md:px-20">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-200 mb-6">
-          My Projects
-        </h2>
+        <motion.h2
+          ref={ref}
+          className="text-3xl md:text-4xl font-bold text-gray-200 mb-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          {'My Projects'.split('').map((letter, index) => (
+            <motion.span key={index} variants={letterVariants}>
+              {letter === ' ' ? '\u00A0' : letter}
+            </motion.span>
+          ))}
+        </motion.h2>
         <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
           Here are a few projects I've worked on. Each project reflects my passion
           for developing user-friendly, dynamic web applications using modern technologies.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
+
             <div
               key={index}
-              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-transform transform hover:scale-105"
-            >
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-4">{project.title}</h3>
-                <p className="text-gray-700 mb-4">{project.description}</p>
-                <p className="text-sm text-gray-500 mb-6">Tech Stack: {project.techStack}</p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition"
-                >
-                  View Project
-                </a>
-              </div>
+              className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-transform transform hover:scale-105 group relative"
+              >
+
+              {/* Project content */}
+                <div className="p-6 transition-colors duration-800 group-hover:bg-gradient-to-r group-hover:from-gray-400 group-hover:to-gray-600 rounded-lg cursor-pointer">
+
+                  {/* Title */}
+                    <h3 className="text-2xl font-semibold text-gray-900 transition-colors duration-500 group-hover:text-white mb-4">
+                      {project.title}
+                    </h3>
+
+                  {/* Description */}
+                    <p className="text-gray-700 transition-colors duration-500 group-hover:text-gray-200 mb-4">
+                      {project.description}
+                    </p>
+
+                  {/* Tech Stack */}
+                    <p className="text-sm text-gray-500 transition-colors duration-500 group-hover:text-gray-300 mb-6">
+                      Tech Stack: {project.techStack}
+                    </p>
+
+                  {/* Link */}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-gray-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-gray-700 transition"
+                    >
+                      View Project
+                    </a>
+
+                </div>
+
             </div>
+
+            
           ))}
+          
         </div>
       </div>
     </section>

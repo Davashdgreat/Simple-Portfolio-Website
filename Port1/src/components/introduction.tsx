@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { HiArrowDownTray } from 'react-icons/hi2';
+import { motion } from "motion/react"
 
 const Intro: React.FC = () => {
     const [multxt] = useTypewriter({
@@ -17,7 +18,11 @@ const Intro: React.FC = () => {
       className=" min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-20 py-10"
     >
       {/* Left Side - Brief Info */}
-      <div className="flex-1 text-left space-y-6 ">
+      <motion.div className="flex-1 text-left space-y-6 "
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 2, ease: 'easeOut' }}>
+        
         <h1 className="text md:text-4xl font-bold text-gray-200">
           I'm 
           <span className="text-gray-200">{multxt}</span>
@@ -31,20 +36,23 @@ const Intro: React.FC = () => {
         <a
           href="/assets/Resume.pdf"
           download
-          className="flex w-1/2 bg-blue-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition "
+          className="flex w-1/2 bg-gray-700 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gray-900 transition "
         >
           Click here to view my resume!<HiArrowDownTray className="h-5 w-5 ml-2" />
         </a>  
-      </div>
+      </motion.div>
 
       {/* Right Side - Profile Picture */}
-      <div className="flex-1 flex justify-center mt-10 md:mt-0 animate-fade-in-from-right duration-700 delay-500">
+      <motion.div className="flex-1 flex justify-center mt-10 md:mt-0"
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 2, ease: 'easeOut' }}>
         <img  
           src="/src/assets/images/ME.jpg"
           alt="Ashaolu David"
           className="w-68 h-68 md:w-80 md:h-80 object-cover shadow-lg"
         />
-      </div>
+      </motion.div>
     </section>
   );
 };

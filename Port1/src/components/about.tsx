@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { HiChevronRight, HiChevronDown } from 'react-icons/hi';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const About: React.FC = () => {
+
   const [activeAccordion, setActiveAccordion] = useState<string | null>(null);
 
   // Function to toggle the accordion
@@ -9,15 +12,67 @@ const About: React.FC = () => {
     setActiveAccordion(activeAccordion === section ? null : section);
   };
 
+  const variants = {
+    open: { height: 'auto', opacity: 1 },
+    closed: { height: 0, opacity: 0 },
+  };
+
+  // Controls for Framer Motion animations
+  const controls = useAnimation();
+
+  // Observe when the heading enters the viewport
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Trigger animation only once
+    threshold: 0.1, // Trigger when 10% of the heading is visible
+  });
+
+  // Start the animation when the heading is in view
+  React.useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
+  // Define animation variants
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        damping: 10,
+        stiffness: 100,
+      },
+    },
+  };
+
+  const containerVariants = {
+    visible: {
+      transition: {
+        staggerChildren: 0.1, // Stagger each letter's animation
+      },
+    },
+  };
+
   return (
-    <section
-      id="about"
-      className="py-20 px-6 md:px-20 bg-none" 
-    >
+    <section id="about" className="py-20 px-6 md:px-20 bg-none">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-200 mb-6 motion-preset-bounce ">
-          About Me
-        </h2>
+        {/* Animate the heading */}
+        <motion.h2
+          ref={ref}
+          className="text-3xl md:text-4xl font-bold text-gray-200 mb-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          {'About Me'.split('').map((letter, index) => (
+            <motion.span key={index} variants={letterVariants}>
+              {letter === ' ' ? '\u00A0' : letter}
+            </motion.span>
+          ))}
+        </motion.h2>
+
         <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
           I am a passionate developer with a focus on building dynamic and
           user-friendly web applications. I specialize in React, TypeScript, and
@@ -44,15 +99,19 @@ const About: React.FC = () => {
                   )}
                 </span>
               </button>
-              {activeAccordion === 'frontend' && (
-                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc animate-pulse">
-                  <li>React & TypeScript</li>
-                  <li>HTML, CSS, and Tailwind CSS</li>
-                  <li>JavaScript (ES6+)</li>
-                  <li>Responsive Design & Development</li>
-                  <li>State Management (Redux, Context API)</li>
-                </ul>
-              )}
+              <motion.ul
+                initial="closed"
+                animate={activeAccordion === 'frontend' ? 'open' : 'closed'}
+                variants={variants}
+                transition={{ duration: 0.4 }}
+                className="pl-6 space-y-2 text-gray-200 text-left list-disc overflow-hidden"
+              >
+                <li>React & TypeScript</li>
+                <li>HTML, CSS, and Tailwind CSS</li>
+                <li>JavaScript (ES6+)</li>
+                <li>Responsive Design & Development</li>
+                <li>State Management (Redux, Context API)</li>
+              </motion.ul>
             </div>
 
             {/* Backend Accordion */}
@@ -70,14 +129,18 @@ const About: React.FC = () => {
                   )}
                 </span>
               </button>
-              {activeAccordion === 'backend' && (
-                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc animate-pulse">
-                  <li>PHP</li>
-                  <li>MySQL</li>     
-                  <li>API Integration</li>             
-                  <li>Authentication & Authorization (JWT, OAuth)</li>
-                </ul>
-              )}
+              <motion.ul
+                initial="closed"
+                animate={activeAccordion === 'backend' ? 'open' : 'closed'}
+                variants={variants}
+                transition={{ duration: 0.4 }}
+                className="pl-6 space-y-2 text-gray-200 text-left list-disc overflow-hidden"
+              >
+                <li>PHP</li>
+                <li>MySQL</li>
+                <li>API Integration</li>
+                <li>Authentication & Authorization (JWT, OAuth)</li>
+              </motion.ul>
             </div>
 
             {/* Database Administration Accordion */}
@@ -95,38 +158,44 @@ const About: React.FC = () => {
                   )}
                 </span>
               </button>
-              {activeAccordion === 'database' && (
-                <ul className="pl-6 space-y-2 text-gray-200 text-left list-disc animate-pulse">
-                  <li>MySQL</li>
-                  <li>XAMPP</li>
-                  <li>Microsoft Office</li>
-                  <li>Documentation with Notion</li>
-                </ul>
-              )}
+              <motion.ul
+                initial="closed"
+                animate={activeAccordion === 'database' ? 'open' : 'closed'}
+                variants={variants}
+                transition={{ duration: 0.4 }}
+                className="pl-6 space-y-2 text-gray-200 text-left list-disc overflow-hidden"
+              >
+                <li>MySQL</li>
+                <li>XAMPP</li>
+                <li>Microsoft Office</li>
+                <li>Documentation with Notion</li>
+              </motion.ul>
             </div>
           </div>
 
+          {/* Experience Section */}
           <div className="space-y-4">
             <h3 className="text-2xl font-semibold text-gray-300">Experience</h3>
             <div className="space-y-4 text-left">
-              <div className="border-l-4 border-blue-400 pl-4">
+              <div className="border-l-4 border-gray-500 pl-4">
                 <h4 className="text-xl font-semibold text-gray-200">
                   Frontend Developer at AFT Solutions
                 </h4>
                 <p className="text-lg text-gray-300">
-                  <p className='font-bold'>November 2024 – Present :</p> 
-                  Developed responsive user interfaces
-                  using React, TypeScript, and Tailwind CSS, improving application
-                  performance and user experience.
+                  <p className="font-bold">November 2024 – Present :</p>
+                  Developed responsive user interfaces using React, TypeScript,
+                  and Tailwind CSS, improving application performance and user
+                  experience.
                 </p>
               </div>
-              <div className="border-l-4 border-blue-400 pl-4">
+              <div className="border-l-4 border-gray-500 pl-4">
                 <h4 className="text-xl font-semibold text-gray-200">
                   Intern at Oyo State Road Traffic Management Authority (OYRTMA)
                 </h4>
                 <p className="text-lg text-gray-300">
-                  <p className='font-bold'>December 2023 – October 2024 :</p>
-                  Managed a recruitment database, organized candidate information, and ensuring efficient data handling for better decision-making. By optimizing these systems, I supported the agency’s efforts in building a more organized and effective team, ultimately enhancing operational efficiency.
+                  <p className="font-bold">December 2023 – October 2024 :</p>
+                  Managed a recruitment database, organized candidate information,
+                  and ensured efficient data handling for better decision-making.
                 </p>
               </div>
             </div>
