@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaYoutube } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
@@ -27,17 +27,19 @@ const Contact: React.FC = () => {
 
   // Setup Intersection Observer on mount
   useEffect(() => {
+    const leftElement = leftRef.current;
+  const rightElement = rightRef.current;
+
     const observer = new IntersectionObserver(handleIntersection, {
       threshold: 0.5, // 50% of the element should be in the viewport
     });
 
-    if (leftRef.current) observer.observe(leftRef.current);
-    if (rightRef.current) observer.observe(rightRef.current);
-
-    // Cleanup observer on unmount
+    if (leftElement) observer.observe(leftElement);
+    if (rightElement) observer.observe(rightElement);
+  
     return () => {
-      if (leftRef.current) observer.unobserve(leftRef.current);
-      if (rightRef.current) observer.unobserve(rightRef.current);
+      if (leftElement) observer.unobserve(leftElement); // Use local variable
+      if (rightElement) observer.unobserve(rightElement); // Use local variable
     };
   }, []);
 
@@ -67,7 +69,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 md:px-20">
+    <section id="contact" className="py-20 px-6 md:px-20 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Left Side - Socials */}
         <motion.div
@@ -77,21 +79,24 @@ const Contact: React.FC = () => {
           animate={{ x: inViewLeft ? 0 : -200, opacity: inViewLeft ? 1 : 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          <h2 className="text-3xl font-bold text-gray-200">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
             Reach out to me on my socials
           </h2>
           <div className="flex justify-center space-x-6 animate-bounce">
             <a href="https://github.com/Davashdgreat" target="_blank" rel="noopener noreferrer">
-              <FaGithub size={32} className="text-gray-200 hover:text-gray-400" />
+              <FaGithub size={32} className="text-gray-900 hover:text-gray-400 dark:text-gray-100" />
             </a>
             <a href="https://www.linkedin.com/in/ashaolu-david-1b4a091b6/" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin size={32} className="text-gray-200 hover:text-gray-400" />
+              <FaLinkedin size={32} className="text-gray-900 hover:text-gray-400 dark:text-gray-100" />
             </a>
             <a href="https://x.com/davash_i" target="_blank" rel="noopener noreferrer">
-              <FaTwitter size={32} className="text-gray-200 hover:text-gray-400" />
+              <FaTwitter size={32} className="text-gray-900 hover:text-gray-400 dark:text-gray-100" />
+            </a>
+            <a href="https://www.youtube.com/@imdavash8740" target="_blank" rel="noopener noreferrer">
+              <FaYoutube size={32} className="text-gray-900 hover:text-gray-400 dark:text-gray-100" />
             </a>
             <a href="mailto:ashaoludavid1@gmail.com">
-              <FaEnvelope size={32} className="text-gray-200 hover:text-gray-400" />
+              <FaEnvelope size={32} className="text-gray-900 hover:text-gray-400 dark:text-gray-100" />
             </a>
           </div>
         </motion.div>
@@ -99,15 +104,15 @@ const Contact: React.FC = () => {
         {/* Right Side - Contact Form */}
         <motion.div
           ref={rightRef}
-          className="bg-white shadow-lg rounded-lg p-8"
+          className="bg-gray-500 shadow-lg rounded-lg p-8"
           initial={{ x: 200, opacity: 0 }}
           animate={{ x: inViewRight ? 0 : 200, opacity: inViewRight ? 1 : 0 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contact Me</h3>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-6 dark:text-gray-100">Contact Me</h3>
           <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-gray-700">
+              <label htmlFor="name" className="block text-gray-900 dark:text-gray-100">
                 Name
               </label>
               <input
@@ -115,11 +120,11 @@ const Contact: React.FC = () => {
                 name="user_name"
                 id="name"
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-900"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-gray-700">
+              <label htmlFor="email" className="block text-gray-900 dark:text-gray-100">
                 Email
               </label>
               <input
@@ -127,11 +132,11 @@ const Contact: React.FC = () => {
                 name="user_email"
                 id="email"
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-900"
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-gray-700">
+              <label htmlFor="message" className="block text-gray-900 dark:text-gray-100">
                 Message
               </label>
               <textarea
@@ -139,17 +144,17 @@ const Contact: React.FC = () => {
                 id="message"
                 rows={4}
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-900"
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              className="w-full bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 transition-colors"
             >
               Send Message
             </button>
             {message && (
-              <p className="text-center text-green-600 mt-4">{message}</p>
+              <p className="text-center text-white mt-4">{message}</p>
             )}
           </form>
         </motion.div>

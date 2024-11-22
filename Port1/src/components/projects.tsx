@@ -89,11 +89,11 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-6 md:px-20">
+    <section id="projects" className="py-20 px-6 md:px-20 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto text-center">
         <motion.h2
           ref={ref}
-          className="text-3xl md:text-4xl font-bold text-gray-200 mb-6"
+          className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 dark:text-gray-100"
           variants={containerVariants}
           initial="hidden"
           animate={controls}
@@ -104,7 +104,7 @@ const Projects: React.FC = () => {
             </motion.span>
           ))}
         </motion.h2>
-        <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-gray-900 mb-10 max-w-3xl mx-auto dark:text-gray-100">
           Here are a few projects I've worked on. Each project reflects my passion
           for developing user-friendly, dynamic web applications using modern technologies.
         </p>

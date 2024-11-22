@@ -32,3 +32,21 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Scrollbar styles for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #111827; /* Dark mode track color */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* Dark mode thumb color */
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #374151; /* Hover color */
+}

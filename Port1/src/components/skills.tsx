@@ -89,11 +89,11 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-20 px-6 md:px-20">
+    <section id="skills" className="py-20 px-6 md:px-20 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto text-center">
       <motion.h2
           ref={ref}
-          className="text-3xl md:text-4xl font-bold text-gray-200 mb-6"
+          className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 dark:text-gray-100"
           variants={containerVariants}
           initial="hidden"
           animate={controls}
@@ -104,7 +104,7 @@ const Skills: React.FC = () => {
             </motion.span>
           ))}
         </motion.h2>
-        <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
+        <p className="text-lg md:text-xl text-gray-900 mb-10 max-w-3xl mx-auto dark:text-gray-100">
           Here are the technologies I have experience with, and how familiar I am with each.
         </p>
 
@@ -112,7 +112,7 @@ const Skills: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {skillsData.map((category, index) => (
             <div key={index} className="space-y-4">
-              <h3 className="text-xl font-semibold text-gray-200 mb-4">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 dark:text-gray-100">
                 {category.category}
               </h3>
               {category.skills.map((skill) => (
