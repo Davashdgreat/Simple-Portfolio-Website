@@ -48,14 +48,14 @@ const Projects: React.FC = () => {
       description:
         'A web app for renting school football fields, allowing users to book fields, agents to manage listings, and schools to offer rental spaces, increasing the credibilty and accountability of primary and secondary institutions',
       techStack: 'React, TypeScript, Tailwind CSS',
-      link: 'https://github.com/Davashdgreat/schoolfieldrental-ui', // GitHub link (replace with a live link)
+      link: 'https://open-school-field1.vercel.app/', // GitHub link (replace with a live link)
     },
     {
       title: 'Portfolio Website',
       description:
         'A personal portfolio website built with React, TypeScript, and Tailwind CSS, showcasing my projects, technical skills, and professional experience in an interactive and visually appealing design.',
       techStack: 'React, TypeScript, Tailwind CSS',
-      link: 'https://github.com/Davashdgreat/portfolio', // GitHub link (replace with live link)
+      link: 'https://davashfolio1.vercel.app/', // GitHub link (replace with live link)
     },
     {
         title: 'Weather Forecast App',
