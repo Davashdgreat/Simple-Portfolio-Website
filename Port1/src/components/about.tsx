@@ -182,7 +182,7 @@ const About: React.FC = () => {
                   Frontend Developer at AFT Solutions
                 </h4>
                 <p className="text-lg text-gray-900 dark:text-gray-100">
-                  <p className="font-bold">November 2024 – Present :</p>
+                  <p className="font-bold">October 2024 – December 2024 :</p>
                   Developed responsive user interfaces using React, TypeScript,
                   and Tailwind CSS, improving application performance and user
                   experience.
