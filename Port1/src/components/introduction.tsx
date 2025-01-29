@@ -34,7 +34,7 @@ const Intro: React.FC = () => {
           interfaces and bringing ideas to life through code.
         </p>
         <a
-          href="/assets/Resume.pdf"
+          href="/Resume.pdf"
           download
           className="flex w-1/2 bg-gray-800 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gray-400 transition "
         >
@@ -48,7 +48,7 @@ const Intro: React.FC = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 2, ease: 'easeOut' }}>
         <img  
-          src="/src/assets/images/ME.jpg"
+          src="/ME.jpg"
           alt="Ashaolu David"
           className="w-68 h-68 md:w-80 md:h-80 object-cover shadow-lg"
         />
