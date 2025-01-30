@@ -10,7 +10,12 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <div className="text-2xl font-bold cursor-pointer">
-          <a href="#">Davash</a>
+        {/*Light Theme Logo*/}
+        <img src="/logo-dark.png" alt="Davash" className="w-25 h-16 block dark:hidden" />
+
+        {/*Light Theme Logo*/}
+        <img src="/logo.png" alt="Davash" className="w-25 h-16 hidden dark:block" />
+
         </div>
 
         {/* Links for larger screens */}
